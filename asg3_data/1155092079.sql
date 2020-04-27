@@ -1,6 +1,6 @@
 /* Query1 */
 Spool result1.lst
-select L.lid, L.league_name, L.year, r.region_name from leagues L, regions R where L.rid=R.rid and (L.season='Spring' or L.season='Winter') order by L.lid;
+select L.lid, L.league_name, L.year, r.region_name from leagues L, regions R where L.rid=R.rid and (L.season='Spring' or L.season='Summer') order by L.lid;
 Spool off
 
 /* Query2 */
@@ -74,7 +74,7 @@ create view fhot6 as select * from fhots H where H.sid=6;
 create view fhot7 as select * from fhots H where H.sid=7;
 create view fhotmax as select F.rid, MAX(NVL(F.hot, 0)) HOT_HIGH from fhots F group by F.rid;
 Spool result7.lst
-select fhot4.rid, fhot4.hot as HOT_4, fhot5.hot as HOT_5, fhot6.hot as HOT_6, fhot7.hot as HOT_7, fhotmax.HOT_HIGH  from fhot4, fhot5, fhot6, fhot7, fhotmax where fhot4.rid=fhot5.rid and fhot5.rid=fhot6.rid and fhot6.rid=fhot7.rid and fhot4.rid=fhotmax.rid;
+select fhot4.rid, fhot4.hot as HOT_4, fhot5.hot as HOT_5, fhot6.hot as HOT_6, fhot7.hot as HOT_7, fhotmax.HOT_HIGH  from fhot4, fhot5, fhot6, fhot7, fhotmax where fhot4.rid=fhot5.rid and fhot5.rid=fhot6.rid and fhot6.rid=fhot7.rid and fhot4.rid=fhotmax.rid order by fhot4.rid DESC;
 Spool off
 drop view spons;
 drop view hots;
